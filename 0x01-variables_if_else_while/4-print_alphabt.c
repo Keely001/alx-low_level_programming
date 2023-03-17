@@ -3,7 +3,7 @@
 #include <time.h>
 
 /**
- * main - prints letters in new lines.
+ * main - Print specific letters
  * Return: Always 0
  */
 int main(void)
@@ -11,7 +11,10 @@ int main(void)
 	char c;
 
 	for (c = 'a'; c <= 'z'; c++)
-	putchar(c);
-	putchar('\n');
+	{
+		if (c != 'q' || c != 'e')
+		putchar(c);
+		putchar('\n');
+	}
 	return (0);
 }
