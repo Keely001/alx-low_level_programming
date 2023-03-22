@@ -2,7 +2,7 @@
 #include "main.h"
 
 /**
- * print_to_98 - print to 
+ * print_to_98 - print to
  * @n: number
  * Return: Always a 0
  */
@@ -33,7 +33,8 @@ void print_to_98(int n)
 		printf("\n");
 	}
 	else
+	{
 	printf("98");
 	printf("\n");
-	return (0);
+	}
 }
