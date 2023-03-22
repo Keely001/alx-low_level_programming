@@ -1,8 +1,7 @@
 #include "main.h"
 
 /**
- * main - test case 0
- * @i: number to be checked
+ * main - Test for pos or neg
  * Return: 0
  */
 int main(void)
