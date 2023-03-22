@@ -2,7 +2,7 @@
 #include "main.h"
 
 /**
- * print_to_98 - print to 98
+ * print_to_98 - print to 
  * @n: number
  * Return: Always a 0
  */
@@ -19,6 +19,7 @@ void print_to_98(int n)
 			else
 			printf("%d, ", i);
 		}
+		printf("\n");
 	}
 	else if (n < 98)
 	{
@@ -29,7 +30,10 @@ void print_to_98(int n)
 			else
 			printf("%d, ", i);
 		}
+		printf("\n");
 	}
 	else
 	printf("98");
+	printf("\n");
 	return (0);
+}
