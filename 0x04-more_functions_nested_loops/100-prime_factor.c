@@ -8,9 +8,10 @@
 
 int main(void)
 {
-	long a, max;
-	long num = 612852475143;
-	double sq = sqrt(num);
+	long a, max, num, sq;
+
+	num = 612852475143;
+	sq = sqrt(num);
 
 	for (a = 1; x <= sq; a++)
 	{
