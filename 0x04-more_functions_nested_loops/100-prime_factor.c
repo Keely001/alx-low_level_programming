@@ -14,7 +14,7 @@ int main(void)
 
 	for (a = 1; x <= sq; a++)
 	{
-		if(num % a == 0)
+		if (num % a == 0)
 			max = num / a;
 	}
 	printf("%ld\n", max);
