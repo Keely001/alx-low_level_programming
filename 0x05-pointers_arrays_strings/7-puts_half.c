@@ -5,19 +5,23 @@
  * @str: input
  * Return: half of input
  */
+
 void puts_half(char *str)
 {
-	int i;
-	int a;
+	int a, n, b;
 
-	i = 0;
+	b = 0;
 
-	while (str != '\0')
-		i++;
-	a = (i / 2);
-	if ((i % 2) == 1)
-		a = ((i + 1) / 2);
-	for (j = a; str[j] != '\0'; j++)
-		_putchar(str[j]);
+	for (a = 0; str[a] != '\0'; a++)
+		b++;
+
+	n = (b / 2);
+
+	if ((b % 2) == 1)
+		n = ((b + 1) / 2);
+
+	for (a = n; str[a] != '\0'; a++)
+		_putchar(str[a]);
 	_putchar('\n');
 }
+
