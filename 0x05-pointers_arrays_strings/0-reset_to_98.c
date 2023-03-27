@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * main - takes a poimter to an int
- * @n: parameter of the function
+ * reset_to_98 - takes a poimter to an int
+ * @*n: parameter of the function
  * Return: 0
  */
 
