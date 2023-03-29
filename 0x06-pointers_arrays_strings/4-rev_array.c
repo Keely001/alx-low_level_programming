@@ -17,14 +17,15 @@ void reverse_array(int *a, int n)
 	if (n % 2 == 0)
 		midNum = n / 2;
 	else
-		midNum = (n / 2) - 2;
+		midNum = (n / 2) - 1;
 	i = 0;
 	while (a[i] != '\0')
 	{
 		count++;
+		i++;
 	}
 	count--;
-	for (j = 0; j <= midNum; j++)
+	for (j = 0; j < midNum; j++)
 	{
 		reserve = a[count];
 		a[count] = a[j];
