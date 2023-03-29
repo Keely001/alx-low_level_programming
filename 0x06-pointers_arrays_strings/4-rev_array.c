@@ -7,29 +7,15 @@
  */
 void reverse_array(int *a, int n)
 {
-	int midNum;
 	int i;
-	int count;
-	int reserve;
+	int m;
 
-	count = 0;
-	midNum = 0;
-	if (n % 2 == 0)
-		midNum = n / 2;
-	else
-		midNum = (n / 2) - 1;
-	i = 0;
-	while (a[i] != '\0')
+	for (i = 0; i < n; i++)
 	{
-		count++;
-		i++;
-	}
-	count--;
-	for (j = 0; j < midNum; j++)
-	{
-		reserve = a[count];
-		a[count] = a[j];
-		a[j] = reserve
-		count--;
+		m = a[i];
+		a[i] = a[n];
+		a[n] = m;
+		n--;
 	}
 }
+
