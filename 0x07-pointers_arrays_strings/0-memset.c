@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * simple_print_buffer - memset method
+ * _memset - memset method
  * @s: memory to be set
  * @b: location to be set
  * @n : from the beginning, no of memory o be set
