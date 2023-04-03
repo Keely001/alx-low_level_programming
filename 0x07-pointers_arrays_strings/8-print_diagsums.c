@@ -3,7 +3,9 @@
 
 /**
  * print_diagsums - print sum of diagonals
- *
+ * a: letters
+ * @size: size of array
+ * Return: None.
  */
 void print_diagsums(int *a, int size)
 {
