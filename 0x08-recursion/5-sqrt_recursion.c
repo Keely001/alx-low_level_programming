@@ -1,10 +1,10 @@
 #include "main.h"
+int main_recursion(int n, int i);
 /**
  * _sqrt_recursion - introduction of i
  * @n: number
  * Return: sqrt of the n
  */
-int main_recursion(int n, int i);
 
 int _sqrt_recursion(int n)
 {
