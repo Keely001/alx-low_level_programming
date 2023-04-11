@@ -1,8 +1,8 @@
 #include "main.h"
 /**
  * argstostr - concatinates all strings
- * @ac:
- * @av:
+ * @ac: no. of inputs
+ * @av: array of inputs
  * Return: character
  */
 char *argstostr(int ac, char **av)
@@ -28,7 +28,7 @@ char *argstostr(int ac, char **av)
 	{
 		for (b = 0; av[a][b]; b++)
 		{
-			s[c] = av [a][b];
+			s[c] = av[a][b];
 			c++;
 		}
 		if (s[c] == '\0')
