@@ -10,7 +10,7 @@ unsigned int str_len(char *s);
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int a, b, d, j, i, sum;
+	unsigned int a, b, j, i;
 	char *c;
 
 	if (s2 == NULL)
@@ -19,12 +19,11 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		s1 = "";
 	a = str_len(s1);
 	b = str_len(s2);
-	if (n >= b)
-		d = b;
+	if (n < b)
+		c = malloc(sizeof(char) * (a + n + 1));
 	else
-		d = n;
-	sum = a + d + 1;
-	c = malloc(sizeof(char) * sum);
+		c = malloc(sizeof(char) * (a + b + 1));
+
 	if (c == NULL)
 		return (NULL);
 	i = 0;
@@ -54,7 +53,8 @@ unsigned int str_len(char *s)
 {
 	unsigned int count;
 
-	while (*s != '\0')
+	count = 0;
+	while (*s)
 	{
 		count++;
 		s++;
