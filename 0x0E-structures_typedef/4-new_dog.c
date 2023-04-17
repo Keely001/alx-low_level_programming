@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+char *str_cpy(char *dest, char *src);
 int str_len(char *s);
 /**
  * new_dog - creates a new dog
@@ -28,8 +29,6 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(s);
 		return (NULL);
 	}
-	s->name = name;
-	s->age = age;
 	s->owner = malloc(sizeof(char) * (j + 1));
 	if (s == NULL)
 	{
@@ -37,7 +36,10 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(s->name);
 		return (NULL);
 	}
-	s->owner = owner;
+	str_cpy(s->name, name);
+	s->age = age;
+	str_cpy(s->owner, owner);
+
 	return (s);
 }
 /**
@@ -55,4 +57,26 @@ int str_len(char *s)
 		i++;
 	}
 	return (i);
+}
+/**
+ * str_cpy - copying contents to anothermemory location
+ * @dest: pointer to destination memory
+ * @src: pointer to source memory
+ * Return: pointer to string
+ */
+
+
+char *str_cpy(char *dest, char *src)
+{
+	int j, i;
+
+	j = 0;
+	while (src[j] != '\0')
+	{
+		j++;
+	}
+	for (i = 0; i < j; i++)
+		dest[i] = src[i];
+	dest[i] = '\0';
+	return (dest);
 }
