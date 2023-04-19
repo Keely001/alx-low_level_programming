@@ -26,10 +26,10 @@ int main(int argc, char *argv[])
 		exit(2);
 	}
 
-	ar = (char*)main;
+	ar = (char *)main;
 
 	for (i = 0; i < size - 1; i++)
-		printf("%02hhx ",ar[i]);
+		printf("%02hhx ", ar[i]);
 	printf("%02hhx\n", ar[i]);
 	return (0);
 }

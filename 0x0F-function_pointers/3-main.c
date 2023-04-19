@@ -6,7 +6,7 @@
  * @argv: array of arguments
  * Return: the results
  */
-int main(int __attribute__((__unused__)) argc,char *argv[])
+int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	char *sign;
 	int num1;
@@ -20,7 +20,7 @@ int main(int __attribute__((__unused__)) argc,char *argv[])
 		printf("Error\n");
 		exit(98);
 	}
-	if ((num2 == 0 && *sign == '/') || 
+	if ((num2 == 0 && *sign == '/') ||
 			(num2 == 0 && *sign == '%'))
 	{
 		printf("Error\n");
