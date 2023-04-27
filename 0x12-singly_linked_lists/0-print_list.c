@@ -2,7 +2,7 @@
 
 /**
  * print_list - print content of a linked list.
- * h: pointer to relevant info for the print function
+ * @h: pointer to relevant info for the print function
  *
  * Return: none.
  */
