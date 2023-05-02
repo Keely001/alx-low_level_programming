@@ -1,5 +1,7 @@
 #include "lists.h"
 
+
+size_t loop_listint_len(const listint_t *head);
 /**
  * loop_listint_len - checked for an existing loop in the existing node
  * @head: pointer to the first node
