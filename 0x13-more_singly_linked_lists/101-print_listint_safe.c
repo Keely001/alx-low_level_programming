@@ -1,6 +1,6 @@
 #include "lists.h"
 
-
+size_t print_listint_safe(const listint_t *head);
 size_t loop_listint_len(const listint_t *head);
 /**
  * loop_listint_len - checked for an existing loop in the existing node
