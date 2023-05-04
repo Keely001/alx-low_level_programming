@@ -11,10 +11,9 @@ int set_bit(unsigned long int *n, unsigned int index)
 {
 	unsigned long int position;
 
-	if (n == NULL || index > 63)
+	if (index > 63)
 		return (-1);
 	position = ((*n >> index) | 1);
-
 	position = position << index;
 	*n = position;
 	return (1);
