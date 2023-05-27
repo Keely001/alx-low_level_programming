@@ -274,7 +274,7 @@ void close_elffile(int fd1)
  * Return: Depending on the success
  */
 
-int main (int argc, char *argv[])
+int main (int __attribute__((unused)) argc, char *argv[])
 {
 	Elf64_Ehdr *head;
 	int fd1, checker_r1;
