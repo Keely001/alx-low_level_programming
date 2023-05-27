@@ -1,15 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdint.h>
 #include <unistd.h>
 #include <elf.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-
+#include <fcntl.h>
 
 void close_elffile(int fd1);
-void error_message();
 void close_checker(int fd);
 void check_file(Elf64_Ehdr *head);
 void magic_printer(Elf64_Ehdr *head);
@@ -21,11 +19,12 @@ void abi_printer(Elf64_Ehdr *head);
 void type_printer(unsigned int e_type, unsigned char *e_ident);
 void entry_printer(unsigned long int e_entry, unsigned char *e_ident);
 
-void error_message()
-{
-	dprintf(STDERR, "Error, too many arguments passed");
-	exit(98);
-}
+/**
+ * close_checker - close file
+ * fd: file descriptor
+ * Return: None.
+ */
+
 void close_checker(int fd)
 {
 	int checker;
@@ -37,6 +36,12 @@ void close_checker(int fd)
 		exit(98);
 	}
 }
+/**
+ * check_file - check if the current file is an elf file
+ * @head: pointer to the file details
+ * Return: Nothing.
+ */
+
 void check_file(Elf64_Ehdr *head)
 {
 	if (head->e_ident[EI_MAG0] != 127 &&
@@ -44,15 +49,22 @@ void check_file(Elf64_Ehdr *head)
 			head->e_ident[EI_MAG2] != 'L' &&
 			head->e_ident[EI_MAG3] != 'F')
 	{
-		dprintf(STDERR_FILENO,"File:%s is not an Elf file.\n",head);
+		dprintf(STDERR_FILENO,"File:%02x%c%c%c is not an Elf file.\n",head->e_ident[EI_MAG0],
+				head->e_ident[EI_MAG1], head->e_ident[EI_MAG2], head->e_ident[EI_MAG3]);
 		exit (98);
 	}
 }
 
 
+/**
+ * magic_printer - prints the magic
+ * @head: pointer to the file details
+ * Return: None.
+ */
+
 void magic_printer(Elf64_Ehdr *head)
 {
-	int i;
+	int i = 0;
 
 	printf("  Magic:   ");
 	while (i < EI_NIDENT)
@@ -62,8 +74,15 @@ void magic_printer(Elf64_Ehdr *head)
 			printf("\n");
 		else
 			printf(" ");
+		i++;
 	}
 }
+
+/**
+ * class_printer - prints the class
+ * @head: pointer to the file details
+ * Return: None.
+ */
 void class_printer(Elf64_Ehdr *head)
 {
 	printf("  Class:                             ");
@@ -83,6 +102,12 @@ void class_printer(Elf64_Ehdr *head)
 		printf("%x is unknown\n", head->e_ident[EI_CLASS]);
 	}
 }
+
+/**
+ * data_printer - print the data type
+ * @head: pointer to the file details
+ * Return: None.
+ */
 void data_printer(Elf64_Ehdr *head)
 {
 	printf("  Data:                              ");
@@ -101,20 +126,29 @@ void data_printer(Elf64_Ehdr *head)
 		printf("%x is unknown\n", head->e_ident[EI_CLASS]);
 	}
 }
-void verson_printer(Elf64_Ehdr *head)
+
+/**
+ * version_printer - prits the version.
+ * @head: pointer to the file details
+ * Return: None.
+ */
+void version_printer(Elf64_Ehdr *head)
 {
 	printf("  Version:                           %d",head->e_ident[EI_VERSION]);
 	if (head->e_ident[EI_VERSION] == EV_CURRENT)
 	{
 		printf(" (current)\n");
-		break;
 	}
 	else
 	{
 		printf("\n");
-		break;
 	}
 }
+/**
+ * osabi_printer - prints the osabi
+ * @head: pointer to the file details
+ * Return: None.
+ */
 void osabi_printer(Elf64_Ehdr *head)
 {
 	printf("  OS/ABI:                            ");
@@ -155,10 +189,20 @@ void osabi_printer(Elf64_Ehdr *head)
 		printf("%x is unknown\n", head->e_ident[EI_OSABI]);
 	}
 }
+/**
+ * abi_printer - prints the abi
+ * @head: pointer to the file details
+ * Return: None.
+ */
 void abi_printer(Elf64_Ehdr *head)
 {
 	printf("  ABI Version:                       %d\n", head->e_ident[EI_ABIVERSION]);
 }
+/**
+ * type_printer - prints the type
+ * @head: pointer to the file details
+ * Return: None.
+ */
 void type_printer(unsigned int e_type, unsigned char *e_ident)
 {
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
@@ -188,9 +232,14 @@ void type_printer(unsigned int e_type, unsigned char *e_ident)
 	}
 }
 
+/**
+ * entry_printer - prints the entry.
+ * @head: pointer to the file details
+ * Return: None.
+ */
 void entry_printer(unsigned long int e_entry, unsigned char *e_ident)
 {
-	printf(" Entry point address: ");
+	printf("  Entry point address:               ");
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
@@ -204,7 +253,11 @@ void entry_printer(unsigned long int e_entry, unsigned char *e_ident)
 		printf("%#lx\n", e_entry);
 }
 
-
+/**
+ * close_elffile - closes the file
+ * @fd: the file descriptor
+ * Return: None.
+ */
 void close_elffile(int fd1)
 {
 	if (close(fd1) == -1)
@@ -214,14 +267,18 @@ void close_elffile(int fd1)
 		exit(98);
 	}
 }
+/**
+ * main - the main function
+ * @argc: no of arguments passed
+ * @argv: array of the arguments
+ * Return: Depending on the success
+ */
 
 int main (int argc, char *argv[])
 {
 	Elf64_Ehdr *head;
 	int fd1, checker_r1;
 
-	if (argc != 2)
-		error_message();
 	fd1 = open(argv[1], O_RDONLY);
 	if (fd1 == -1)
 	{
