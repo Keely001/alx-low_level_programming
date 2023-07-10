@@ -23,7 +23,7 @@ void entry_printer(unsigned long int e_entry, unsigned char *e_ident);
  * close_checker - close file
  * fd: file descriptor
  * Return: None.
- /
+ */
 void close_checker(int fd)
 {
 	int checker;
