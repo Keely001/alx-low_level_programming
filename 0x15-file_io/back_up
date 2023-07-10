@@ -1,0 +1,48 @@
+#include "elf.h"
+
+/**
+ * main - the main function
+ * @argc: no of arguments passed
+ * @argv: array of the arguments
+ * Return: Depending on the success
+ */
+int main (int __attribute__((unused)) argc, char *argv[])
+{
+	Elf64_Ehdr *head;
+	int fd1, checker_r1;
+
+	fd1 = open(argv[1], O_RDONLY);
+	if (fd1 == -1)
+	{
+		dprintf(STDERR_FILENO,"File:%s unsuccessfuly opened\n",argv[1]);
+		exit(98);
+	}
+	head = malloc(sizeof(Elf64_Ehdr));
+	if (head == NULL)
+	{
+		dprintf(STDERR_FILENO, "unsuccessfull memery allocation detected for file %s\n", argv[1]);
+		close_checker(fd1);
+		exit(98);
+	}
+	checker_r1 = read(fd1, head, sizeof(Elf64_Ehdr));
+	if (checker_r1 == -1)
+	{
+		dprintf(STDERR_FILENO, "unsuccessfull read operation for file %s\n", argv[1]);
+		close_checker(fd1);
+		exit(98);
+	}
+	check_file(head);
+	printf("ELF Header:\n");
+	magic_printer(head);
+	class_printer(head);
+	data_printer(head);
+	version_printer(head);
+	osabi_printer(head);
+	abi_printer(head);
+	type_printer(head->e_type, head->e_ident);
+	entry_printer(head->e_entry, head->e_ident);
+	free(head);
+	close_elffile(fd1);
+	return (0);
+}
+
