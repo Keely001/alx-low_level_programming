@@ -3,8 +3,8 @@
 /**
  * hash_table_set - a function that adds an element to the hash table.
  * @ht: pointer to hash table.
- * @key: The key 
- * @value: The value 
+ * @key: The key
+ * @value: The value
  * Return: 0 OR 1
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
