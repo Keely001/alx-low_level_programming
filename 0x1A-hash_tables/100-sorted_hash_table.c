@@ -26,7 +26,7 @@ shash_table_t *shash_table_create(unsigned long int size)
 }
 
 /**
- * shash_table_set - key/value pair should be inserted in the sorted list at the right place
+ * shash_table_set - key/value pair should be inserted.
  * @ht: the hash table.
  * @key: key to addeded
  * @value: value to be added.
